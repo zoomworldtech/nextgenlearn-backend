@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit User</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #1b5e20;
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        h1 {
+            color: #1b5e20;
+            text-align: center;
+        }
+
+        form {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #c8e6c9;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #c8e6c9;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #1b5e20;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #2e7d32;
+        }
+
+        .back-link {
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+            margin-top: 15px;
+            color: #1b5e20;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Edit User</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <label>Username:</label>
+        <input type="text" name="username" value="{{ user.username }}" required>
+
+        <label>Email:</label>
+        <input type="email" name="email" value="{{ user.email }}" required>
+
+        <label>Role:</label>
+        <select name="role" required>
+            <option value="student" {% if user.role == 'student' %}selected{% endif %}>Student</option>
+            <option value="lecturer" {% if user.role == 'lecturer' %}selected{% endif %}>Lecturer</option>
+            <option value="admin" {% if user.role == 'admin' %}selected{% endif %}>Admin</option>
+        </select>
+
+        <button type="submit">Save Changes</button>
+    </form>
+
+    <a href="{% url 'manage_users' %}" class="back-link">Back to User List</a>
+</body>
+</html>
