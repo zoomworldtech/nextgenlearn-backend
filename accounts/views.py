@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from .forms import CustomUserCreationForm, CustomLoginForm
 
+
 def register_view(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
@@ -80,3 +81,63 @@ def delete_user(request, user_id):
     user.delete()
     return redirect('manage_users')
 
+# will remove json if error occurs lol zoom work
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+
+
+@csrf_exempt
+def api_register(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body.decode('utf-8'))
+            username = data.get('username')
+            email = data.get('email')
+            role = data.get('role', 'student')
+            password1 = data.get('password1')
+            password2 = data.get('password2')
+
+            if not all([username, email, password1, password2]):
+                return JsonResponse({'error': 'All fields are required.'}, status=400)
+
+            if password1 != password2:
+                return JsonResponse({'error': 'Passwords do not match.'}, status=400)
+
+            if CustomUser.objects.filter(username=username).exists():
+                return JsonResponse({'error': 'Username already exists.'}, status=400)
+
+            user = CustomUser.objects.create_user(
+                username=username,
+                email=email,
+                password=password1,
+                role=role
+            )
+            return JsonResponse({'message': 'User created successfully.'}, status=201)
+
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
+    else:
+        return JsonResponse({'error': 'Invalid request method.'}, status=405)
+
+
+
+@csrf_exempt
+def api_login(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body.decode('utf-8'))
+            username = data.get('username')
+            password = data.get('password')
+
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return JsonResponse({'message': f'Login successful as {user.role}.'}, status=200)
+            else:
+                return JsonResponse({'error': 'Invalid username or password.'}, status=401)
+
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
+    else:
+        return JsonResponse({'error': 'Invalid request method.'}, status=405)

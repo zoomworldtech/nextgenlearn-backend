@@ -1,16 +1,98 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Login</title>
+    <meta charset="UTF-8">
+    <title>User Login</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #1b5e20;
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #c8e6c9;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #c8e6c9;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #1b5e20;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #2e7d32;
+        }
+
+        .register-link {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .error-box {
+            background: #ffcdd2;
+            color: #b71c1c;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            list-style-type: none;
+        }
+    </style>
 </head>
 <body>
-    <h2>User Login</h2>
-    <form method="POST" action="">
+    <h1>User Login</h1>
+
+    <form method="POST" novalidate>
         {% csrf_token %}
-        {{ form.as_p }}
+
+        {% if form.non_field_errors %}
+            <ul class="error-box">
+                {% for error in form.non_field_errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <label>Username</label>
+        <input type="text" name="username" value="{{ form.username.value|default:'' }}" required>
+
+        <label>Password</label>
+        <input type="password" name="password" required>
+
         <button type="submit">Login</button>
     </form>
-    <p>Don’t have an account? <a href="{% url 'register' %}">Register here</a></p>
+
+    <a href="{% url 'register' %}" class="register-link">Don't have an account? Register</a>
 </body>
 </html>
 
