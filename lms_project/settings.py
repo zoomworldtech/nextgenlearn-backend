@@ -130,3 +130,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
+# Email backend for password reset (console mode)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+

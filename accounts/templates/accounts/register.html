@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>User Registration</title>
+    <title>Register Account</title>
     <style>
         body {
             background-color: #ffffff;
@@ -16,7 +16,7 @@
         }
 
         form {
-            max-width: 400px;
+            max-width: 420px;
             margin: auto;
             padding: 20px;
             border: 1px solid #c8e6c9;
@@ -60,49 +60,52 @@
         }
 
         .error-box {
-            background: #ffcdd2;
-            color: #b71c1c;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 15px;
-            list-style-type: none;
+            background:#ffcdd2;
+            color:#b71c1c;
+            padding:10px;
+            border-radius:5px;
+            margin-bottom:15px;
         }
     </style>
 </head>
 <body>
-    <h1>Register Account</h1>
+    <h1>Create Your Account</h1>
 
-    <form method="POST" novalidate>
+    <form method="POST">
         {% csrf_token %}
 
         {% if form.errors %}
-            <ul class="error-box">
-                {% for field, errors in form.errors.items %}
+        <div class="error-box">
+            <ul>
+                {% for field_name, errors in form.errors.items %}
                     {% for error in errors %}
                         <li>{{ error }}</li>
                     {% endfor %}
                 {% endfor %}
             </ul>
+        </div>
         {% endif %}
 
-        <label>Username</label>
-        <input type="text" name="username" value="{{ form.username.value|default:'' }}" required>
+        <label>First Name</label>
+        <input type="text" name="first_name" required autocomplete="off">
+
+        <label>Last Name</label>
+        <input type="text" name="last_name" required autocomplete="off">
 
         <label>Email</label>
-        <input type="email" name="email" value="{{ form.email.value|default:'' }}" required>
+        <input type="email" name="email" required autocomplete="off">
 
         <label>Role</label>
         <select name="role" required>
-            <option value="student" {% if form.role.value == "student" %}selected{% endif %}>Student</option>
-            <option value="lecturer" {% if form.role.value == "lecturer" %}selected{% endif %}>Lecturer</option>
-            <option value="admin" {% if form.role.value == "admin" %}selected{% endif %}>Admin</option>
+            <option value="student">Student</option>
+            <option value="lecturer">Lecturer</option>
         </select>
 
         <label>Password</label>
-        <input type="password" name="password1" required>
+        <input type="password" name="password1" required autocomplete="off">
 
         <label>Confirm Password</label>
-        <input type="password" name="password2" required>
+        <input type="password" name="password2" required autocomplete="off">
 
         <button type="submit">Register</button>
     </form>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>User Login</title>
+    <title>Login</title>
     <style>
         body {
             background-color: #ffffff;
@@ -60,34 +60,37 @@
         }
 
         .error-box {
-            background: #ffcdd2;
-            color: #b71c1c;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 15px;
-            list-style-type: none;
+            background:#ffcdd2;
+            color:#b71c1c;
+            padding:10px;
+            border-radius:5px;
+            margin-bottom:15px;
         }
     </style>
 </head>
 <body>
-    <h1>User Login</h1>
+    <h1>Login</h1>
 
-    <form method="POST" novalidate>
+    <form method="POST">
         {% csrf_token %}
 
-        {% if form.non_field_errors %}
-            <ul class="error-box">
-                {% for error in form.non_field_errors %}
-                    <li>{{ error }}</li>
+        {% if form.errors %}
+        <div class="error-box">
+            <ul>
+                {% for field_name, errors in form.errors.items %}
+                    {% for error in errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
                 {% endfor %}
             </ul>
+        </div>
         {% endif %}
 
-        <label>Username</label>
-        <input type="text" name="username" value="{{ form.username.value|default:'' }}" required>
+        <label>Email</label>
+        <input type="email" name="email" required value="@" >
 
         <label>Password</label>
-        <input type="password" name="password" required>
+        <input type="password" name="password" required >
 
         <button type="submit">Login</button>
     </form>
@@ -95,4 +98,3 @@
     <a href="{% url 'register' %}" class="register-link">Don't have an account? Register</a>
 </body>
 </html>
-

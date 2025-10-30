@@ -1,30 +1,23 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .models import CustomUser
+from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
+from django.contrib.auth import authenticate
+from .models import CustomUser
 
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
-        fields = ['username', 'email', 'role', 'password1', 'password2']
+        fields = ['first_name', 'last_name', 'email', 'role', 'password1', 'password2']
 
-    def clean_username(self):
-        username = self.cleaned_data.get('username')
-        if CustomUser.objects.filter(username=username).exists():
-            raise ValidationError("A user with that username already exists.")
-        return username
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if CustomUser.objects.filter(email=email).exists():
+            raise ValidationError("An account with this email already exists.")
+        return email
 
     def clean_password2(self):
-        password1 = self.cleaned_data.get('password1')
         password2 = self.cleaned_data.get('password2')
-
-        # If both present and they don't match, skip other checks.
-        # We'll raise the clear mismatch message in clean().
-        if password1 and password2 and password1 != password2:
-            return password2
-
-        # Only run length/security checks when passwords match or password1 is missing.
         if password2:
             if len(password2) < 8:
                 raise ValidationError("This password is too short. It must contain at least 8 characters.")
@@ -38,12 +31,27 @@ class CustomUserCreationForm(UserCreationForm):
         p1 = cleaned.get('password1')
         p2 = cleaned.get('password2')
         if p1 and p2 and p1 != p2:
-            # non-field error, shows as single message
             raise ValidationError("Password and Confirm Password do not match.")
         return cleaned
 
+    def clean_role(self):
+        role = self.cleaned_data.get('role')
+        if role == 'admin':
+            raise ValidationError("You cannot register as an Admin.")
+        return role
 
 
-class CustomLoginForm(AuthenticationForm):
-    username = forms.CharField(label='Username')
-    password = forms.CharField(label='Password', widget=forms.PasswordInput)
+class CustomLoginForm(forms.Form):
+    email = forms.EmailField(label="Email")
+    password = forms.CharField(label="Password", widget=forms.PasswordInput)
+
+    def clean(self):
+        cleaned = super().clean()
+        email = cleaned.get('email')
+        password = cleaned.get('password')
+
+        if email and password:
+            user = authenticate(email=email, password=password)
+            if not user:
+                raise ValidationError("Invalid email or password.")
+        return cleaned
