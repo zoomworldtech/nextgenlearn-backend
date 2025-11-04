@@ -1,0 +1,20 @@
+{% extends 'accounts/base.html' %}
+{% block title %}Approve results{% endblock %}
+{% block content %}
+<h2>Pending results</h2>
+{% if pending_results %}
+<table class="table table-bordered">
+  <thead><tr><th>results</th><th>Action</th></tr></thead>
+  <tbody>
+  {% for results in pending_results %}
+    <tr>
+      <td>{{ results.title }}</td>
+      <td><button class="btn btn-success btn-sm">Approve</button></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No pending results found.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Dashboard</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #1b5e20;
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #1b5e20;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        .button {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px 25px;
+            background-color: #1b5e20;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background-color: #2e7d32;
+        }
+    </style>
+</head>
+<body>
+    <h1>Student Dashboard</h1>
+    <p>Welcome, {{ user.last_name }}</p>
+    <p>Your role: {{ user.role }}</p>
+
+    <a href="#" class="button">My Courses</a>
+    <a href="#" class="button">Assignments</a>
+    <a href="#" class="button">View Results</a>
+    <a href="{% url 'logout' %}" class="button">Logout</a>
+</body>
+</html>

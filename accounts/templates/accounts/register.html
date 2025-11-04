@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Account</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #1b5e20;
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 420px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #c8e6c9;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #c8e6c9;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #1b5e20;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #2e7d32;
+        }
+
+        .login-link {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .error-box {
+            background:#ffcdd2;
+            color:#b71c1c;
+            padding:10px;
+            border-radius:5px;
+            margin-bottom:15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Create Your Account</h1>
+
+   <form method="POST">
+  {% csrf_token %}
+
+  {% if form.errors %}
+  <div style="background:#ffcdd2;color:#b71c1c;padding:10px;border-radius:5px;margin-bottom:15px;">
+    <ul>
+      {% for field_name, errors in form.errors.items %}
+        {% for error in errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  <label>First Name</label>
+  <input type="text" name="first_name" value="{{ form.first_name.value|default:'' }}" required>
+
+  <label>Last Name</label>
+  <input type="text" name="last_name" value="{{ form.last_name.value|default:'' }}" required>
+
+  <label>Email</label>
+  <input type="email" name="email" value="{{ form.email.value|default:'' }}" required>
+
+  <label>Role</label>
+  <select name="role" required>
+    <option value="">Select Role</option>
+    <option value="student" {% if form.role.value == 'student' %}selected{% endif %}>Student</option>
+    <option value="lecturer" {% if form.role.value == 'lecturer' %}selected{% endif %}>Lecturer</option>
+    <!-- <option value="admin" {% if form.role.value == 'admin' %}selected{% endif %}>Admin</option> -->
+  </select>
+
+  <label>Password</label>
+  <input type="password" name="password1" required>
+
+  <label>Confirm Password</label>
+  <input type="password" name="password2" required>
+
+  <button type="submit">Register</button>
+</form>
+
+
+    <a href="{% url 'login' %}" class="login-link">Already have an account? Login</a>
+</body>
+</html>

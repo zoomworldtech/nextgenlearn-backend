@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit User</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #1b5e20;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #1b5e20;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .container {
+            max-width: 450px;
+            margin: 40px auto;
+            padding: 25px;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #c8e6c9;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #1b5e20;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #2e7d32;
+        }
+
+        .back-btn {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #2e7d32;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 10px;
+            display: block;
+        }
+
+        .back-btn:hover {
+            background-color: #43a047;
+        }
+
+        footer {
+            text-align: center;
+            background-color: #f1f8e9;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            color: #1b5e20;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Edit User</h1>
+    </header>
+
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+
+            <label for="first_name">First Name</label>
+            <input type="text" name="first_name" value="{{ user.first_name }}" required>
+
+            <label for="last_name">Last Name</label>
+            <input type="text" name="last_name" value="{{ user.last_name }}" required>
+
+            <label for="email">Email</label>
+            <input type="email" name="email" value="{{ user.email }}" required>
+
+            <label for="role">Role</label>
+            <select name="role" required>
+                <option value="student" {% if user.role == 'student' %}selected{% endif %}>Student</option>
+                <option value="lecturer" {% if user.role == 'lecturer' %}selected{% endif %}>Lecturer</option>
+                <option value="admin" {% if user.role == 'admin' %}selected{% endif %}>Admin</option>
+            </select>
+
+            <button type="submit">Save Changes</button>
+        </form>
+
+        <a href="{% url 'manage_users' %}" class="back-btn">← Back to Users</a>
+    </div>
+
+    <footer>
+        © 2025 NextGenLearn LMS. All Rights Reserved.
+    </footer>
+
+</body>
+</html>

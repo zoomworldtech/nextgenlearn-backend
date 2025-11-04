@@ -1,0 +1,20 @@
+{% extends 'accounts/base.html' %}
+{% block title %}Approve Payemnts{% endblock %}
+{% block content %}
+<h2>Pending Payments</h2>
+{% if pending_Payments %}
+<table class="table table-bordered">
+  <thead><tr><th>Course</th><th>Action</th></tr></thead>
+  <tbody>
+  {% for payments in pending_payments %}
+    <tr>
+      <td>{{ payments.title }}</td>
+      <td><button class="btn btn-success btn-sm">Approve</button></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No pending Payments found.</p>
+{% endif %}
+{% endblock %}
