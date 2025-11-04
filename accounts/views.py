@@ -162,3 +162,10 @@ def api_login(request):
             return JsonResponse({'error': str(e)}, status=500)
 
     return JsonResponse({'error': 'Invalid request method.'}, status=405)
+
+
+
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("Welcome to the Accounts app!")

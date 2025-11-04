@@ -3,6 +3,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from django.contrib.auth import authenticate
 from .models import CustomUser
+from django.contrib.auth.forms import SetPasswordForm
+from django.core.exceptions import ValidationError
+
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -55,3 +58,16 @@ class CustomLoginForm(forms.Form):
             if not user:
                 raise ValidationError("Invalid email or password.")
         return cleaned
+
+# this is for reset password
+
+
+class CustomSetPasswordForm(SetPasswordForm):
+    def clean(self):
+        cleaned_data = super().clean()
+        new_password2 = cleaned_data.get("new_password2")
+
+        if new_password2 and self.user.check_password(new_password2):
+            raise ValidationError("You cannot reuse your old password. Please choose a new one.")
+
+        return cleaned_data
