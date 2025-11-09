@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NextGen Learn</title>
+  <link rel="stylesheet" href="../../static/accounts/css/style.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-content">
+      <h2 class="logo">NextGenLearn</h2>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="{% url 'login' %}">Courses</a></li>
+          <li><a href="{% url 'login' %}">Sign In</a></li>
+          <li><a href="{% url 'register' %}" class="btn-nav">Get Started</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>Transform Your Learning Journey<br>with NextGenLearn</h1>
+      <p>
+        Access world class courses, connect with expert instructors, and advance your career with our comprehensive learning management system.
+      </p>
+      <div class="hero-buttons">
+        <a href="{% url 'register' %}" class="btn btn-primary">Start Learning Today</a>
+        <a href="{% url 'login' %}" class="btn btn-outline">Browse Courses</a>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="why">
+  <h2>Why Choose NextGenLearn</h2>
+  <p>We provide tools and mentorship to help you thrive in the tech world.</p>
+
+  <div class="features">
+    <div class="feature-card">
+      <div class="icon-circle">
+        <img src="../../static/accounts/image/user.png" alt="Role-Based Access">
+      </div>
+      <h3>Role-Based Access</h3>
+    </div>
+
+    <div class="feature-card">
+      <div class="icon-circle">
+        <img src="../../static/accounts/image/book.png" alt="Course Management">
+      </div>
+      <h3>Course Management</h3>
+    </div>
+
+    <div class="feature-card">
+      <div class="icon-circle">
+        <img src="../../static/accounts/image/security.png" alt="Secure Authentication">
+      </div>
+      <h3>Secure Authentication</h3>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Popular Courses -->
+  <section class="courses">
+    <div class="container">
+      <h2>Popular Course Categories</h2>
+      <p>Explore courses across various disciplines and skill levels.</p>
+      <div class="course-grid">
+        <div class="course-card">
+          <div class="img-placeholder one"></div>
+          <h3>Computer Science</h3>
+          <p>Programming, algorithms, and software development courses.</p>
+          <a href="{% url 'login' %}" class="course-link">Explore Courses →</a>
+        </div>
+        <div class="course-card">
+          <div class="img-placeholder two"></div>
+          <h3>Business & Management</h3>
+          <p>Marketing, finance, and entrepreneurship fundamentals.</p>
+          <a href="{% url 'login' %}" class="course-link">Explore Courses →</a>
+        </div>
+        <div class="course-card">
+          <div class="img-placeholder three"></div>
+          <h3>Engineering</h3>
+          <p>Mechanical, electrical, and civil engineering courses.</p>
+          <a href="{% url 'login' %}" class="course-link">Explore Courses →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <h2>Ready to Start Your Learning Journey?</h2>
+      <p>Join thousands of students and educators using NextGenLearn to achieve their academic goals.</p>
+      <div class="cta-buttons">
+        <a href="{% url 'register' %}" class="btn btn-primary">Create Account</a>
+        <a href="{% url 'login' %}" class="btn btn-outline">Sign In</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+      <div>
+        <h3>NextGenLearn</h3>
+        <p>Empowering education through innovative learning management solutions.</p>
+      </div>
+      <div>
+        <h4>Platform</h4>
+        <ul>
+          <li><a href="{% url 'login' %}">Browse Courses</a></li>
+          <li><a href="{% url 'register' %}">Sign Up</a></li>
+          <li><a href="{% url 'login' %}">Sign In</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Documentation</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <div class="socials">
+            <a href="#">
+                <img class="contact-social" src="../../static/accounts/image/fb.png" alt="facebook">
+            </a>
+            <a href="#">
+                <img class="contact-social" src="../../static/accounts/image/insta.png" alt="instagram">
+            </a>
+            <a href="#">
+                <img class="contact-social" src="../../static/accounts/image/linkedin.png" alt="linkedin">
+            </a>
+        </div>
+    
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

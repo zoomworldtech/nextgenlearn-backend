@@ -2,48 +2,223 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Student Dashboard</title>
-    <style>
-        body {
-            background-color: #ffffff;
-            color: #1b5e20;
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            text-align: center;
-        }
-
-        h1 {
-            color: #1b5e20;
-        }
-
-        p {
-            font-size: 18px;
-        }
-
-        .button {
-            display: inline-block;
-            margin: 10px;
-            padding: 12px 25px;
-            background-color: #1b5e20;
-            color: white;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .button:hover {
-            background-color: #2e7d32;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextGenLearn Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../static/accounts/css/student_dashboard.css">
 </head>
 <body>
-    <h1>Student Dashboard</h1>
-    <p>Welcome, {{ user.last_name }}</p>
-    <p>Your role: {{ user.role }}</p>
 
-    <a href="#" class="button">My Courses</a>
-    <a href="#" class="button">Assignments</a>
-    <a href="#" class="button">View Results</a>
-    <a href="{% url 'logout' %}" class="button">Logout</a>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">NextGenlearn</div>
+            <div class="user-profile">
+                <i class="fa-regular fa-bell notification-bell"></i>
+                <div class="user-info">
+
+
+
+
+                    <img id="profile-pic" src="{{ user.profile_picture.url }}" alt="Profile">
+                    <!-- style="width:100px; height:100px; border-radius:50%; object-fit:cover;             cursor:pointer;" -->
+                <input type="file" id="file-input" style="display:none;">
+                
+                    <span class="user-name">{{ user.first_name }} {{ user.last_name }}</span>
+
+                     <a href="{% url 'logout' %}" class="button">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="dashboard-grid">
+                <div class="main-column">
+                    <section class="welcome-section">
+                        <h1>Welcome back, {{ user.last_name }} !</h1>
+                        <p>Here's what's happening with your courses today.</p>
+                    </section>
+
+                    <section class="summary-cards">
+                        <div class="summary-card">
+                            <div class="icon-wrapper blue">
+                                <i class="fa-solid fa-book-open"></i>
+                            </div>
+                            <div class="card-content">
+                                <div class="title">Enrolled Courses</div>
+                                <div class="value">3</div>
+                            </div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="icon-wrapper green">
+                                <i class="fa-solid fa-file-lines"></i>
+                            </div>
+                            <div class="card-content">
+                                <div class="title">Pending Assignment</div>
+                                <div class="value">6</div>
+                            </div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="icon-wrapper red">
+                                <i class="fa-solid fa-trophy"></i>
+                            </div>
+                            <div class="card-content">
+                                <div class="title">Average Grade</div>
+                                <div class="value">85%</div>
+                            </div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="icon-wrapper purple">
+                                <i class="fa-solid fa-calendar-day"></i>
+                            </div>
+                            <div class="card-content">
+                                <div class="title">Next Class</div>
+                                <div class="time">Today 10:00 am</div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="courses-container">
+                        <h2>My Courses</h2>
+                        <div class="course-list">
+                            <article class="course-card">
+                                <div class="course-header">
+                                    <div class="course-info">
+                                        <h3 class="course-title">Introduction to C Programming Language</h3>
+                                        <p class="course-instructor">Instructor: Mr Sodiq</p>
+                                    </div>
+                                    <button class="btn-view-course">View Course</button>
+                                </div>
+                                <div class="course-progress">
+                                    <div class="progress-info">
+                                        <span class="label">Progress</span>
+                                        <span class="percentage">75%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-bar-fill" style="width: 75%;"></div>
+                                    </div>
+                                </div>
+                                <div class="course-details">
+                                    <div class="detail-item">
+                                        <div class="label">Next Class</div>
+                                        <div class="value">10/10/2025 10:00am</div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="label">Materials</div>
+                                        <div class="value">12</div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="label">Assignment</div>
+                                        <div class="value">3</div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="course-card">
+                                <div class="course-header">
+                                    <div class="course-info">
+                                        <h3 class="course-title">Statistics For Computing</h3>
+                                        <p class="course-instructor">Instructor: Mrs Idowu</p>
+                                    </div>
+                                    <button class="btn-view-course">View Course</button>
+                                </div>
+                                <div class="course-progress">
+                                    <div class="progress-info">
+                                        <span class="label">Progress</span>
+                                        <span class="percentage">50%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-bar-fill" style="width: 50%;"></div>
+                                    </div>
+                                </div>
+                                <div class="course-details">
+                                    <div class="detail-item">
+                                        <div class="label">Next Class</div>
+                                        <div class="value">12/10/2025 10:00am</div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="label">Materials</div>
+                                        <div class="value">4</div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="label">Assignment</div>
+                                        <div class="value">2</div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="sidebar">
+                    <div class="widget">
+                        <h3 class="widget-title">Recent Activity</h3>
+                        <ul class="activity-list">
+                            <li class="activity-item">
+                                <div class="icon-wrapper green"><i class="fa-solid fa-file-lines"></i></div>
+                                <div class="activity-content">
+                                    <div class="title">Submitted Assignment</div>
+                                    <div class="subtitle">Intro to C Programming</div>
+                                    <div class="time">2 hours ago</div>
+                                </div>
+                            </li>
+                            <li class="activity-item">
+                                <div class="icon-wrapper purple"><i class="fa-solid fa-book-open"></i></div>
+                                <div class="activity-content">
+                                    <div class="title">New Course Added</div>
+                                    <div class="subtitle">Data Structures</div>
+                                    <div class="time">1 day ago</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="widget">
+                        <h3 class="widget-title">Quick Actions</h3>
+                        <ul class="quick-actions-list">
+                            <li class="action-item"><i class="fa-solid fa-plus"></i><span>Enroll in Course</span></li>
+                            <li class="action-item"><i class="fa-solid fa-file-circle-plus"></i><span>Submit Assignment</span></li>
+                            <li class="action-item"><i class="fa-solid fa-calendar-check"></i><span>Check Schedule</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
 </body>
+
+<script>
+document.getElementById('profile-pic').onclick = function() {
+    document.getElementById('file-input').click();
+};
+
+document.getElementById('file-input').onchange = function() {
+    const file = this.files[0];
+    const formData = new FormData();
+    formData.append('profile_picture', file);
+
+    fetch("{% url 'upload_profile_picture' %}", {
+        method: 'POST',
+        headers: {'X-CSRFToken': '{{ csrf_token }}'},
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            document.getElementById('profile-pic').src = data.url;
+        } else {
+            alert('Upload failed');
+        }
+    });
+};
+</script>
+
+
+
+
 </html>

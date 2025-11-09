@@ -71,3 +71,13 @@ class CustomSetPasswordForm(SetPasswordForm):
             raise ValidationError("You cannot reuse your old password. Please choose a new one.")
 
         return cleaned_data
+
+from django import forms
+from .models import CustomUser
+
+
+# for profile picture
+class ProfilePictureForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['profile_picture']

@@ -4,10 +4,12 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse, JsonResponse
 from .forms import CustomUserCreationForm, CustomLoginForm
 from .models import CustomUser
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_protect
 import json
-from django.shortcuts import redirect
 from django.contrib.auth import logout
+from django.contrib import messages
+from django.shortcuts import redirect
+from django.views.decorators.http import require_POST
 
 
 # ------------------ Normal Web Views ------------------ #
@@ -24,6 +26,8 @@ def register_view(request):
     return render(request, 'accounts/register.html', {'form': form})
 
 
+from django.contrib import messages
+
 def login_view(request):
     if request.method == 'POST':
         form = CustomLoginForm(request.POST)
@@ -35,11 +39,12 @@ def login_view(request):
                 login(request, user)
                 return redirect('dashboard')
             else:
-                form.add_error(None, "Invalid email or password.")
+                messages.error(request, "Invalid email or password.")
+                return redirect('login')
     else:
         form = CustomLoginForm()
-    return render(request, 'accounts/login.html', {'form': form})
 
+    return render(request, 'accounts/login.html', {'form': form})
 
 def logout_view(request):
     logout(request)
@@ -95,7 +100,7 @@ def delete_user(request, user_id):
 
 # ------------------ JSON API for Frontend ------------------ #
 
-@csrf_exempt
+@csrf_protect
 def api_register(request):
     """Handle registration from frontend via JSON"""
     if request.method == 'POST':
@@ -136,7 +141,7 @@ def api_register(request):
     return JsonResponse({'error': 'Invalid request method.'}, status=405)
 
 
-@csrf_exempt
+@csrf_protect
 def api_login(request):
 
 
@@ -167,5 +172,21 @@ def api_login(request):
 
 from django.http import HttpResponse
 
-def home(request):
-    return HttpResponse("Welcome to the Accounts app!")
+# for index home page
+def index(request):
+    return render(request, 'accounts/index.html')
+
+from django.shortcuts import render, redirect
+from .forms import ProfilePictureForm
+
+# for profile picture
+@login_required
+@require_POST
+def upload_profile_picture(request):
+    picture = request.FILES.get('profile_picture')
+    if picture:
+        user = request.user
+        user.profile_picture = picture
+        user.save()
+        return JsonResponse({'success': True, 'url': user.profile_picture.url})
+    return JsonResponse({'success': False})

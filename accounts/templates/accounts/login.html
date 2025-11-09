@@ -1,100 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <style>
-        body {
-            background-color: #ffffff;
-            color: #1b5e20;
-            font-family: Arial, sans-serif;
-            margin: 40px;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        form {
-            max-width: 400px;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #c8e6c9;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-        }
-
-        label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #c8e6c9;
-            border-radius: 5px;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #1b5e20;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        button:hover {
-            background-color: #2e7d32;
-        }
-
-        .register-link {
-            display: block;
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        .error-box {
-            background:#ffcdd2;
-            color:#b71c1c;
-            padding:10px;
-            border-radius:5px;
-            margin-bottom:15px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NextGenLearn - Sign In</title>
+  <link rel="stylesheet" href="../../static/accounts/css/signin.css"/>
 </head>
 <body>
-    <h1>Login</h1>
+
+  <div class="container">
+    <h1 class="logo">NextGenLearn</h1>
+    <p class="subtitle">Sign in to your account</p>
+
+  
 
     <form method="POST">
-        {% csrf_token %}
 
-        {% if form.errors %}
-        <div class="error-box">
-            <ul>
-                {% for field_name, errors in form.errors.items %}
-                    {% for error in errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                {% endfor %}
-            </ul>
+      {% csrf_token %}
+      <!-- Remove tab switcher since only email login is used -->
+      <div class="input-group">
+        <label for="email">Email Address</label>
+        <div class="input-wrapper">
+          <span class="input-icon">
+            <img src="../../static/accounts/image/envelope-removebg-preview.png" alt="">
+          </span>
+         <input type="email" id="email" name="email" placeholder="Enter your email" 
+       value="{{ form.email.value|default:'' }}" required/>
+
         </div>
-        {% endif %}
+      </div>
 
-        <label>Email</label>
-        <input type="email" name="email" required value="@" >
+      <div class="input-group">
+        <label for="password">Password</label>
+        <div class="input-wrapper">
+          <span class="input-icon">
+            <img src="../../static/accounts/image/unlock-removebg-preview.png" alt="Lock">
+          </span>
+         <input type="password" id="password" name="password" placeholder="Enter your password" required/>
+        </div>
+      </div>
 
-        <label>Password</label>
-        <input type="password" name="password" required >
+      <div class="options">
+        <label class="remember-me">
+          <input type="checkbox" name="remember"/>
+          <span>Remember me</span>
+        </label>
+       <a href="{% url 'password_reset' %}" class="forgot-password">Forgot Password?</a>
 
-        <button type="submit">Login</button>
+      </div>
+
+      <button type="submit" class="signin-btn">Sign In</button>
+
+      <p class="create-account">
+        Don't have an account? 
+        <a href="{% url 'register' %}">Create Account</a>
+      </p>
+
     </form>
+  </div>
 
-    <a href="{% url 'register' %}" class="register-link">Don't have an account? Register</a>
+  <script src=""></script>
 </body>
 </html>

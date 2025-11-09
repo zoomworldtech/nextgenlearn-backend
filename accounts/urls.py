@@ -30,7 +30,8 @@ urlpatterns = [
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='accounts/password_reset_complete.html'), name='password_reset_complete'),
 
     # # homepage
-     path('', views.home, name='home'),  # maps root to home view
+     path('', views.index, name='index'),  # maps root to home view
+path('upload-profile-picture/', views.upload_profile_picture, name='upload_profile_picture'),
 ]
 
 

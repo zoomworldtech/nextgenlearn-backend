@@ -28,6 +28,13 @@ class CustomUser(AbstractUser):
     )
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='student')
 
+    profile_picture = models.ImageField(
+        upload_to='profile_pics/',
+        default='profile_pics/default.png',
+        blank=True,
+        null=True
+    )
+
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'role']
 
@@ -35,3 +42,4 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return f"{self.email} ({self.role})"
+       

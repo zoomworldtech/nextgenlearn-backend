@@ -3,75 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Register Account</title>
-    <style>
-        body {
-            background-color: #ffffff;
-            color: #1b5e20;
-            font-family: Arial, sans-serif;
-            margin: 40px;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        form {
-            max-width: 420px;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #c8e6c9;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-        }
-
-        label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #c8e6c9;
-            border-radius: 5px;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #1b5e20;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        button:hover {
-            background-color: #2e7d32;
-        }
-
-        .login-link {
-            display: block;
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        .error-box {
-            background:#ffcdd2;
-            color:#b71c1c;
-            padding:10px;
-            border-radius:5px;
-            margin-bottom:15px;
-        }
-    </style>
+    <link rel="stylesheet" href="../../static/accounts/css/register.css">
 </head>
 <body>
-    <h1>Create Your Account</h1>
-
-   <form method="POST">
+    <div class="container">
+    <div class="registration">
+      <div  class="formhead">
+        <h3>Create Your Account</h3>
+        <p>It's quick and easy.</p>
+      </div>
+      <p>Account Type</p>
+       <form method="POST">
   {% csrf_token %}
 
   {% if form.errors %}
@@ -86,33 +28,56 @@
   </div>
   {% endif %}
 
-  <label>First Name</label>
-  <input type="text" name="first_name" value="{{ form.first_name.value|default:'' }}" required>
+        <div class="buttonswitch">
+          <div class="switchmain">
+            <input type="radio" name="role" id="student" checked value="student" {% if form.role.value == 'student' %}ckecked{% endif %}>
+            <label for="student" class="switch-label">Student</label>
 
-  <label>Last Name</label>
-  <input type="text" name="last_name" value="{{ form.last_name.value|default:'' }}" required>
-
-  <label>Email</label>
-  <input type="email" name="email" value="{{ form.email.value|default:'' }}" required>
-
-  <label>Role</label>
-  <select name="role" required>
-    <option value="">Select Role</option>
-    <option value="student" {% if form.role.value == 'student' %}selected{% endif %}>Student</option>
-    <option value="lecturer" {% if form.role.value == 'lecturer' %}selected{% endif %}>Lecturer</option>
+            <input type="radio" name="role" id="lecturer" value="lecturer" {% if form.role.value == 'lecturer' %}checked{% endif %}>
+            <label for="lecturer" class="switch-label">Lecturer</label>
     <!-- <option value="admin" {% if form.role.value == 'admin' %}selected{% endif %}>Admin</option> -->
-  </select>
 
-  <label>Password</label>
-  <input type="password" name="password1" required>
+          </div>
+        </div>
+        <div class="formproper">
 
-  <label>Confirm Password</label>
-  <input type="password" name="password2" required>
-
-  <button type="submit">Register</button>
-</form>
+          <label class="allinputtxt">First Name</label>
+          <input type="text" name="first_name" id="namebox" value="{{ form.first_name.value|default:'' }}" placeholder=" Enter First Name" Required>
 
 
-    <a href="{% url 'login' %}" class="login-link">Already have an account? Login</a>
+          <label class="allinputtxt">Last Name</label>
+          <input type="text" name="last_name" id="namebox" value="{{ form.last_name.value|default:'' }}" placeholder="Enter Last Name" required>
+
+
+          <label class="allinputtxt">Email Address</label>
+          <div class="inputpass">
+            <input type="email" name="email" value="{{ form.email.value|default:'' }}" required placeholder="Enter your Email">
+          </div>
+
+
+	<!-- password part -->
+
+          <label class="allinputtxt">Password</label>
+          <div class="inputpass">
+            <input type="password" name="password1" placeholder="Enter your password" required>
+          </div>
+
+          <label class="allinputtxt">Confirm Password</label>
+          <div class="inputpass">
+            <input type="password" name="password2" placeholder="Confirm your password" required>
+          </div>
+		
+          <button type="submit">Create Account</button>
+
+          <div class="frmbtn">
+            <span>Already have an account?</span>
+            <a href="{% url 'login' %}">Login Here</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
 </body>
 </html>
+

@@ -1,0 +1,337 @@
+:root {
+  --green: #2ecc71;
+  --dark: #2c3e50;
+  --light: #f8f9fa;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: var(--dark);
+  background-color: var(--white);
+  line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+  background: var(--white);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: var(--dark);
+  font-weight: 700;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--dark);
+  font-weight: 500;
+}
+
+.btn-nav{
+  background: var(--dark);
+  color: var(--white) !important;
+  padding: 0.6rem 1.2rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s; 
+}
+
+
+.btn {
+  background: var(--white);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: var(--dark);
+  padding: 0.6rem 1.2rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--white);
+  color: var(--dark);
+}
+
+.btn-outline:hover {
+  background: var(--green);
+  color: var(--white);
+}
+
+/* Hero */
+.hero {
+  background: var(--dark);
+  background-image: url(../image/heroframe.png);
+  color: var(--white);
+  padding: 10rem 0;
+  text-align: left;
+}
+
+.hero-content {
+  min-width: 600px;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.hero p {
+  margin: 1.5rem 0;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Feature Cards */
+/* WHY CHOOSE NEXTGENLEARN */
+.why {
+  background: #ffffff; 
+  text-align: center;
+  padding: 5rem 1rem;
+}
+
+.why h2 {
+  color: #1b1b1b;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.why p {
+  color: #555;
+  font-size: 1rem;
+  margin-bottom: 3rem;
+}
+
+/* Features Grid */
+.features {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+/* Feature Card */
+.feature-card {
+  background: #848484;
+  border-radius: 16px;
+  width: 260px;
+  padding: 2.5rem 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  border: 2px solid transparent;
+}
+
+.feature-card:hover {
+  border-color: #2ecc71; 
+  transform: translateY(-5px);
+  background: #ffffff;
+}
+
+/* Icon Circle */
+.icon-circle {
+  width: 80px;
+  height: 80px;
+  background: #e9ecef; /* soft ash/grey background */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem auto;
+  transition: background 0.3s ease;
+}
+
+.feature-card:hover .icon-circle {
+  background: #d5f5e3; 
+}
+.icon-circle img {
+  width: 40px;
+  height: 40px;
+}
+
+/* Title */
+.feature-card h3 {
+  color: #2c3e50;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .features {
+    flex-direction: column;
+    align-items: center;
+  }
+  .feature-card {
+    width: 90%;
+  }
+}
+
+/* Courses */
+.courses {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.course-card {
+  background: var(--white);
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  padding-bottom: 1.5rem;
+}
+
+.img-placeholder {
+  height: 200px;
+  border-radius: 10px 10px 0 0;
+  margin-bottom: 10px;
+}
+div .one {
+  background: url(../image/Frame\ 12.png);
+}
+div .two {
+  background: url(../image/Frame\ 13.png);
+}
+div .three {
+  background: url(../image/Frame\ 14.png);
+}
+
+.course-link {
+  color: var(--green);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* CTA */
+.cta {
+  background: var(--light);
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.cta-buttons {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Footer */
+footer {
+  background: var(--green);;
+  color: var(--white);
+  padding: 3rem 0;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.footer-content h4, .footer-content h3 {
+  margin-bottom: 1rem;
+}
+
+.footer-content ul {
+  list-style: none;
+}
+
+.footer-content ul li a {
+  text-decoration: none;
+  color: var(--white);
+  opacity: 0.9;
+}
+
+.socials a {
+  margin-right: 10px;
+  font-size: 1.5rem;
+  color: var(--white);
+}
+
+/* Footer Social Icons — centered white circular background */
+.socials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.contact-social {
+  background: var(--white);
+  width: 22px;
+  height: 22px;
+  padding: 4px;
+  border-radius: 50%;
+  object-fit: contain;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.contact-social:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero {
+    text-align: center;
+  }
+  .hero-content {
+    max-width: 100%;
+  }
+  .nav-links {
+    gap: 0.8rem;
+  }
+}

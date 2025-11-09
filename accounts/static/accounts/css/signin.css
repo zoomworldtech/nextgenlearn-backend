@@ -1,0 +1,193 @@
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+    .error-box {
+            background:#ffcdd2;
+            color:#b71c1c;
+            padding:10px;
+            border-radius:5px;
+            margin-bottom:15px;
+        }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #f9f9fb;
+    color: rgb(28, 244, 28);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 380px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    padding: 32px;
+    text-align: center;
+  }
+  
+  .logo {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: rgb(13, 242, 13);
+  }
+  
+  .subtitle {
+    font-size: 16px;
+    color: rgb(13, 242, 13);
+    margin-bottom: 28px;
+  }
+  
+  /* Tab Switcher */
+  .tab-switcher {
+    display: flex;
+    background: rgb(220, 219, 219);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  
+  .tab {
+    flex: 1;
+    padding: 12px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #f4f4f4; 
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+  
+  .tab.active {   
+    background: rgb(16, 235, 16);
+    color: #f4f4f4;
+    font-weight: 600;
+  }
+  
+  /* Input Group */
+  .input-group {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  .input-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  .input-wrapper {
+    position: relative;
+  }
+  
+  .input-wrapper input {
+    width: 100%;
+    padding: 14px 14px 14px 44px;
+    font-size: 15px;          
+    border: 1.5px solid #ddd;
+   border-radius: 12px;
+   outline: none;
+    transition: border 0.2s ease;
+  }
+  .input-wrapper img {
+    height: 1.2rem;
+  }
+  .input-wrapper input:focus {     
+   border-color: rgb(4, 240, 4) ;
+  }
+  
+  .input-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 18px;
+    pointer-events: none;
+  }
+  
+  /* Options Row */
+  .options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    font-size: 14px;
+  }
+  
+  .remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+  
+  .remember-me input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #007bff;
+  }
+  
+  .forgot-password {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .forgot-password:hover {
+    text-decoration: underline;
+  }
+  
+  /* Sign In Button */
+  .signin-btn {
+    width: 100%;
+    padding: 14px;
+    background-color:rgb(15, 244, 15);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    margin-bottom: 24px;
+  }
+  
+  .signin-btn:hover {
+    background-color: #000;
+  }
+  
+  /* Create Account Link */
+  .create-account {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .create-account a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .create-account a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Hidden by default */
+  .tab-content {
+    display: none;
+  }
+  
+  .tab-content.active {
+    display: block;
+  }
