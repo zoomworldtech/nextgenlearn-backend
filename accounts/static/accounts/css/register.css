@@ -33,7 +33,7 @@ margin-bottom:15px;
           }
 
 .registration {
-  background-color: white;
+  background-color: #f5f5f5;
   width: 390px;
   border-radius: 10px;
   padding: 20px;
@@ -44,7 +44,7 @@ margin-bottom:15px;
   font-size: 23px;
   text-align: center;
   margin-bottom: 5px;
-  color: #4CAF50;
+  color: #1b6e45;
 }
 
 .formhead p {
@@ -91,7 +91,7 @@ input[type="radio"] {
 
 input#student:checked + label[for="student"],
 input#lecturer:checked + label[for="lecturer"] {
-  background-color: #4CAF50;
+  background-color: #1b6e45;
   color: white;
 }
 
@@ -138,7 +138,7 @@ button {
   height: 45px;
   font-size: 16px;
   margin-top: 20px;
-  background-color: #4CAF50;
+  background-color: #1b6e45;
   border: none;
   border-radius: 6px;
   color: white;
@@ -161,6 +161,6 @@ button:hover {
 }
 
 .frmbtn a {
-  color: #4CAF50;
+  color: #1b6e45;
   font-weight: bold;
 }

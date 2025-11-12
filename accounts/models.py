@@ -31,6 +31,7 @@ class CustomUser(AbstractUser):
     profile_picture = models.ImageField(
         upload_to='profile_pics/',
         default='profile_pics/default.png',
+
         blank=True,
         null=True
     )

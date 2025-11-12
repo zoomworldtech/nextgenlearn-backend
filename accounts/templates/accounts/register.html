@@ -15,9 +15,8 @@
       <p>Account Type</p>
        <form method="POST">
   {% csrf_token %}
-
   {% if form.errors %}
-  <div style="background:#ffcdd2;color:#b71c1c;padding:10px;border-radius:5px;margin-bottom:15px;">
+  <div style="background:#1b6e45;color:#ffffff;padding:10px;border-radius:5px;margin-bottom:15px;">
     <ul>
       {% for field_name, errors in form.errors.items %}
         {% for error in errors %}
